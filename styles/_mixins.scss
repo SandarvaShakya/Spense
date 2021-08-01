@@ -1,0 +1,66 @@
+@import "./variables";
+
+//mixins
+
+//buttons
+//$p-tb = padding-top-bottom
+//$p-lr = padding-left-right
+@mixin button($p-tb, $p-lr) {
+  background-color: black;
+  text-decoration: none;
+  color: white;
+  font-size: 1.25rem;
+  padding: $p-tb $p-lr;
+  display: inline-block;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: gray;
+    color: black;
+  }
+}
+
+//to center anything
+@mixin center {
+  margin: 0 auto;
+}
+
+//normal text decoration
+@mixin text {
+  color: $clr-text;
+  font-size: 1.125rem;
+  padding: 1rem 0;
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+//media query
+//$point = breakpoint
+//$select = desktop/ mobile
+//  "d" = desktop (min-width media query)
+//  "m" = mobile (max-width media query)
+//  "t = tablet (min/max-width media query)
+@mixin breakpoint($point, $select) {
+  @if $select == "m" {
+    @media (max-width: $point) {
+      @content;
+    }
+  } @else if $select == "d" {
+    @media (min-width: $point) {
+      @content;
+    }
+  } @else if $select == "t" {
+    @media (min-width: $point) and (max-width: $breakpoint-d) {
+      @content;
+    }
+  }
+}

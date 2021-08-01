@@ -1,0 +1,479 @@
+@import "./variables";
+@import "./resets";
+@import "./mixins";
+
+//universal styles
+body {
+  font-family: $primary-font;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  @include center;
+
+  @include breakpoint($breakpoint-d, "d") {
+    width: 80%;
+  }
+}
+
+.btn {
+  @include button(1rem, 1.25rem);
+}
+
+.btn--small {
+  @include button(0.75rem, 2.5rem);
+}
+
+.heading {
+  font-size: 1.3125rem;
+}
+
+//main section
+//screentop
+.offer {
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-size: 1.0625rem;
+
+  p {
+    padding: 1.2rem 0;
+    &::before,
+    &::after {
+      content: "🎉";
+    }
+  }
+}
+
+//navigation
+.nav {
+  font-size: 1.125rem;
+
+  //logo and hamburger
+  .nav--top {
+    position: relative;
+    padding: 1.5em 0;
+
+    .hamburger {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      @include breakpoint($breakpoint-d, "d") {
+        display: none;
+      }
+
+      @include breakpoint($breakpoint-t, "t") {
+        display: none;
+      }
+    }
+  }
+
+  //navbar
+  .nav__list {
+    text-align: center;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s linear;
+
+    .nav__item {
+      list-style: none;
+      padding: 0.75rem 0;
+
+      .nav__link {
+        text-decoration: none;
+        color: black;
+      }
+
+      .btn {
+        color: white;
+      }
+
+      &:hover {
+        .btn {
+          color: black;
+        }
+      }
+    }
+
+    @include breakpoint($breakpoint-d, "d") {
+      max-height: 1000px;
+      width: 90%;
+
+      .nav--primary {
+        margin: 0 auto;
+        width: 30%;
+      }
+
+      .nav--secondary {
+        width: 20%;
+      }
+    }
+
+    @include breakpoint($breakpoint-t, "t") {
+      max-height: 1000px;
+      width: 70%;
+
+      .nav--primary {
+        width: 50%;
+      }
+
+      .nav--secondary {
+        width: 45%;
+      }
+    }
+  }
+
+  //navbar toggle
+  .nav--toggle {
+    max-height: 1000px;
+    visibility: visible;
+    transition: max-height 0.3s linear;
+  }
+}
+
+//main section
+.hero-section {
+  background-color: $gray;
+
+  .hero__image {
+    position: relative;
+    filter: saturate(150%);
+    border-radius: 8px;
+
+    //box inside image
+    .box {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      padding: 1.25rem 1rem;
+      border-radius: 8px;
+      background-color: white;
+
+      .title {
+        border-bottom: 1px solid gray;
+        margin-bottom: 0.625rem;
+        font-weight: 100;
+      }
+
+      .title,
+      .balance {
+        padding-bottom: 0.625em;
+      }
+
+      .btn {
+        margin-top: 0.625rem;
+      }
+    }
+
+    @include breakpoint($breakpoint-t, "t") {
+      overflow: hidden;
+      max-height: 400px;
+
+      img {
+        position: relative;
+        top: -350px;
+      }
+    }
+  }
+
+  .hero__content {
+    padding: 2em 0;
+
+    .heading {
+      color: $clr-heading;
+    }
+
+    .text {
+      @include text;
+
+      .hero__list {
+        margin-left: 1.5rem;
+
+        .list__item {
+          list-style: none;
+          font-size: 1rem;
+          padding-left: 1rem;
+
+          &::marker {
+            content: url("../Spense\ Starter\ Files/Assets/Checkmark.svg");
+          }
+        }
+      }
+    }
+
+    #form {
+      display: flex;
+      margin-top: 2rem;
+
+      input[type="email"] {
+        width: 50%;
+        font-size: 1rem;
+        border: 1px solid gray;
+        border-radius: 8px;
+        margin-right: 1rem;
+      }
+
+      input::placeholder {
+        text-align: center;
+      }
+
+      input[type="button"] {
+        border: none;
+      }
+    }
+  }
+
+  @include breakpoint($breakpoint-d, "d") {
+    padding: 2rem 0;
+
+    .hero__image {
+      order: 2;
+      width: 40%;
+    }
+
+    .hero__content {
+      width: 45%;
+      padding: 0;
+
+      .heading {
+        font-size: 2.5rem;
+      }
+
+      .text {
+        font-size: 1.3rem;
+        line-height: 1.5;
+      }
+
+      #form {
+        width: 70%;
+        margin-top: 2rem;
+
+        input[type="email"] {
+          margin-right: 2rem;
+        }
+      }
+    }
+  }
+}
+
+//Logos
+.logo-bar {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 3rem 0;
+  }
+
+  @include breakpoint($breakpoint-m, "m") {
+    img {
+      max-width: initial;
+      width: 100px;
+    }
+
+    .logo + .logo {
+      margin-left: 1em;
+    }
+  }
+
+  @include breakpoint($breakpoint-d, "d") {
+    .logo {
+      width: 10%;
+    }
+  }
+}
+
+//all sections
+.section {
+  .section__content {
+    .text {
+      @include text;
+    }
+
+    a {
+      color: gray;
+
+      &:after {
+        content: "\2192";
+        font-size: 30px;
+      }
+    }
+  }
+
+  .section__image {
+    margin-top: 2.5rem;
+  }
+}
+
+//gray section
+.section--light {
+  .container {
+    padding: 2rem;
+    padding-bottom: 0;
+    background-color: $gray;
+    border-radius: 8px;
+  }
+
+  @include breakpoint($breakpoint-d, "d") {
+    .container {
+      padding: 3rem 2rem;
+      width: 80%;
+      background-image: url("../Spense\ Starter\ Files/Assets/Phone\ Mockup.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: right bottom;
+    }
+
+    .section__content {
+      width: 50%;
+      padding: 6.25rem 3.5rem;
+    }
+
+    .section__image {
+      display: none;
+    }
+  }
+
+  @include breakpoint($breakpoint-t, "t") {
+    .section__content {
+      padding: 3rem 3rem 0 3rem;
+    }
+  }
+}
+
+//normal section
+.section--white {
+  margin: 3rem 0;
+
+  @include breakpoint($breakpoint-d, "d") {
+    .section__content {
+      order: 2;
+      width: 50%;
+    }
+
+    .section__image {
+      width: 50%;
+    }
+  }
+}
+
+//footer
+.footer {
+  background-color: black;
+  color: white;
+
+  .content {
+    padding: 3rem 0 5rem 0;
+
+    //all links heading
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    a,
+    p {
+      font-size: 1.125rem;
+      color: gray;
+    }
+
+    //all lists
+    ul {
+      list-style: none;
+
+      li {
+        padding: 0.5rem 0;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .row {
+    align-items: flex-start;
+  }
+
+  //contents inside content
+  .content--primary,
+  .content--secondary {
+    padding-bottom: 2rem;
+
+    p {
+      margin-top: 1rem;
+    }
+  }
+
+  .content--primary {
+    @include breakpoint($breakpoint-d, "d") {
+      width: 35%;
+    }
+  }
+
+  .content--secondary {
+    padding-top: 0;
+
+    @include breakpoint($breakpoint-d, "d") {
+      width: 55%;
+    }
+  }
+
+  .list--primary,
+  .list--secondary {
+    display: flex;
+    justify-content: space-between;
+
+    .list {
+      width: 50%;
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+
+      @include breakpoint($breakpoint-d, "d") {
+        &:nth-child(2) {
+          width: 50%;
+        }
+      }
+    }
+
+    @include breakpoint($breakpoint-d, "d") {
+      width: 50%;
+    }
+  }
+
+  .list--primary {
+    @include breakpoint($breakpoint-d, "d") {
+      order: 2;
+    }
+  }
+
+  .list--secondary {
+    margin-top: 2rem;
+
+    @include breakpoint($breakpoint-d, "d") {
+      margin: 0;
+    }
+  }
+}
+
+//universal media query
+@media (min-width: $breakpoint-d) {
+  .row {
+    @include flex;
+  }
+}
+
+@media (min-width: $breakpoint-t) and (max-width: $breakpoint-d) {
+  .flex {
+    @include flex;
+  }
+}
